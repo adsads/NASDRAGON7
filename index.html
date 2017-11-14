@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<h1> NASDRAGON7: The Reimagining </h1>
 <style>
 canvas {
     border:1px solid #d3d3d3;
@@ -29,6 +30,8 @@ function startGame() {
     myGameArea.start();
 }
 
+
+
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -43,6 +46,8 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
+
+
 
 function component(width, height, color, x, y, type) {
     this.type = type;
@@ -144,10 +149,24 @@ function everyinterval(n) {
 function accelerate(n) {
     myGamePiece.gravity = n;
 }
+
+function onKeyDown(e) {
+    if (e.keyCode == 32) {
+        accelerate(-0.2);
+    }
+}
+document.addEventListener('keydown', onKeyDown);
+
+function onKeyUp(e) {
+    if (e.keyCode == 32) {
+        accelerate(0.05);
+    }
+}
+document.addEventListener('keyup', onKeyUp);
 </script>
 <br>
 <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
-<p>Use the ACCELERATE button to stay in the air</p>
+<p>Use the ACCELERATE button to stay in the air or space button</p>
 <p>How long can you stay alive?</p>
 </body>
 </html>
